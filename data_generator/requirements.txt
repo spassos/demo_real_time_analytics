@@ -1,7 +1,7 @@
 Flask>=2.0
 Faker>=10.0
-SQLAlchemy>=1.4,<2.0 # Versão < 2.0 é mais compatível com a versão atual do Cloud SQL Connector
+SQLAlchemy>=1.4,<2.0
 cloud-sql-python-connector[pg8000]>=1.3.0
 pg8000>=1.29
-gunicorn>=20.0 # Para produção/Cloud Run
+gunicorn>=20.0
 google-cloud-secret-manager

@@ -108,7 +108,7 @@ def create_table_if_not_exists():
 def generate_fake_event():
     event_types = ["Inspeção A", "Inspeção B", "Reparo Estrutural", "Troca de Componente", "Manutenção Preventiva", "Verificação de Sistema"]
 
-    event_type_weights = [   30,    25,        5,          10,          20,           10]
+    event_type_weights = [   10,        10,        5,          25,          30,           20]
 
     locations = ["Hangar Principal", "Pista 09L", "Portão A3", "Centro de Manutenção", "Oficina de Motores"]
 
@@ -130,7 +130,7 @@ def generate_data():
     """Endpoint para gerar e inserir dados sintéticos. Acionado pelo Cloud Scheduler."""
 
 
-    num_records = random.randint(100, 1000)
+    num_records = random.randint(5, 50)
 
     logger.info(f"Recebida solicitação via Scheduler. Gerando {num_records} registros aleatórios.")
     generated_data = [generate_fake_event() for _ in range(num_records)]

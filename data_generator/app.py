@@ -117,11 +117,14 @@ def generate_fake_event():
     selected_event_type = random.choices(event_types, weights=event_type_weights, k=1)[0]
     selected_location = random.choices(locations, weights=location_weights, k=1)[0] 
 
+    # Define o início do dia como 9:00 UTC
+    start_of_day = datetime.now(timezone.utc).replace(hour=9, minute=0, second=0, microsecond=0)
+
     return {
         "aircraft_registration": f"PR-{faker.lexify(text='???').upper()}{random.randint(100,999)}",
         "event_type": selected_event_type, 
         "description": faker.sentence(nb_words=10),
-        "event_timestamp": faker.date_time_between(start_date="-1y", end_date="now", tzinfo=timezone.utc),
+        "event_timestamp": faker.date_time_between(start_date=start_of_day, end_date="now", tzinfo=timezone.utc),
         "location": selected_location, 
     }
 

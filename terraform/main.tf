@@ -22,17 +22,6 @@ data "google_project" "project" {
   project_id = var.project_id
 }
 
-# Blocos de habilitação de API removidos novamente para evitar erro de permissão 'serviceusage.services.list'.
-# !!! IMPORTANTE: HABILITE MANUALMENTE AS SEGUINTES APIS NO SEU PROJETO GCP ANTES DO APPLY !!!
-# - compute.googleapis.com
-# - sqladmin.googleapis.com
-# - servicenetworking.googleapis.com
-# - bigquery.googleapis.com
-# - datastream.googleapis.com
-
-# Nota: APIs para Cloud Run, Artifact Registry, Cloud Build não foram readicionadas neste momento,
-# podem ser incluídas se a implantação do Cloud Run for gerenciada pelo Terraform.
-
 # Blocos de habilitação de API removidos conforme solicitado.
 # Certifique-se de que as seguintes APIs estejam habilitadas manualmente no projeto:
 # - sqladmin.googleapis.com
@@ -50,7 +39,7 @@ data "google_project" "project" {
 resource "google_project_service" "compute" {
   project = var.project_id
   service = "compute.googleapis.com"
-  disable_on_destroy = true # Desabilitar ao destruir
+  disable_on_destroy = true
 }
 
 # Adicionar delay após habilitar Compute API
@@ -63,14 +52,14 @@ resource "time_sleep" "wait_compute_api" {
 resource "google_project_service" "sqladmin" {
   project = var.project_id
   service = "sqladmin.googleapis.com"
-  disable_on_destroy = true # Desabilitar ao destruir
+  disable_on_destroy = true
 }
 
 # Habilitar Cloud DNS API (recomendado para PSC)
 resource "google_project_service" "dns" {
   project = var.project_id
   service = "dns.googleapis.com"
-  disable_on_destroy = true # Desabilitar ao destruir
+  disable_on_destroy = true
 }
 
 # Habilitar BigQuery API
@@ -84,7 +73,7 @@ resource "google_project_service" "bigquery" {
 resource "google_project_service" "datastream" {
   project = var.project_id
   service = "datastream.googleapis.com"
-  disable_on_destroy = true # Desabilitar ao destruir
+  disable_on_destroy = true
 }
 
 # Adicionar delay após habilitar Datastream API

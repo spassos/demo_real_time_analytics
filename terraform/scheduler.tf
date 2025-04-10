@@ -49,14 +49,3 @@ resource "google_cloud_scheduler_job" "invoke_data_generator" {
     # Implicit dependency on the Cloud Run service existing, but not managed here.
   ]
 }
-
-# --- IMPORTANT MANUAL STEP --- #
-# After applying this Terraform configuration, you MUST grant the
-# service account created above (google_service_account.scheduler_invoker)
-# the "roles/run.invoker" role on your Cloud Run service.
-# Example gcloud command:
-# gcloud run services add-iam-policy-binding YOUR_CLOUD_RUN_SERVICE_NAME \
-#   --member="serviceAccount:${google_service_account.scheduler_invoker.email}" \
-#   --role="roles/run.invoker" \
-#   --region=YOUR_CLOUD_RUN_REGION \
-#   --platform=managed # Or 'gke', 'kubernetes' 

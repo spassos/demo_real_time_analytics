@@ -14,9 +14,9 @@ resource "google_secret_manager_secret" "db_password" {
 
 resource "google_secret_manager_secret_version" "db_password_version" {
   secret      = google_secret_manager_secret.db_password.id
-  secret_data = var.db_password # Pega a senha da variável sensível
+  secret_data = var.db_password
 
-  # Garante que a versão seja destruída se o segredo for
+
   lifecycle {
     create_before_destroy = true
   }
@@ -24,7 +24,6 @@ resource "google_secret_manager_secret_version" "db_password_version" {
 
 
 locals {
-  # Construir o email da conta de serviço padrão
   compute_engine_sa_email = "${data.google_project.project.number}-compute@developer.gserviceaccount.com"
 }
 

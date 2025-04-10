@@ -19,8 +19,8 @@ app = Flask(__name__)
 faker = Faker()
 
 # Variáveis de Ambiente para Configuração do Banco
-DB_USER = os.environ.get("DB_USER", "maint_user")
-DB_NAME = os.environ.get("DB_NAME", "datastream_source") # Corrigido nome do banco padrão
+DB_USER = os.environ.get("DB_USER")
+DB_NAME = os.environ.get("DB_NAME") # Corrigido nome do banco padrão
 INSTANCE_CONNECTION_NAME = os.environ.get("INSTANCE_CONNECTION_NAME")
 # Nova variável para o ID do segredo da senha
 DB_PASSWORD_SECRET_ID = os.environ.get("DB_PASSWORD_SECRET_ID")
